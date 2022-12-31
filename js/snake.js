@@ -7,7 +7,7 @@ import { getGridSize } from "./grid.js";
 /*
  * Settings
  */
-export const SNAKE_SPEED = 10; // SNAKE_SPEED PER SECOND
+export const SNAKE_SPEED = 12; // SNAKE_SPEED PER SECOND
 
 
 /*
@@ -33,8 +33,8 @@ export function update(delta) {
   
   // Updates snake head
   const inputDirection = getInputDirection();
-  snakeBody[0].x += inputDirection.x;
-  snakeBody[0].y += inputDirection.y;
+  snakeBody[0].x += inputDirection.x; // * delta;
+  snakeBody[0].y += inputDirection.y; // * delta;
 
   // Handle border collisions
   const GRID_SIZE = getGridSize();

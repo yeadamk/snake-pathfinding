@@ -51,13 +51,15 @@ if (!navigator.userAgent.includes('Chrome')) {
 
 // Mutable Settings
 const SHOW_FPS = false;
-const INGAME_FPS = SNAKE_SPEED;   // defined in snake.js
+const targetFrameRate = SNAKE_SPEED;
 
 // Immutable Settings
 const gameBoard = document.querySelector('#game-board');
-const TIMESTEP = 1000 / INGAME_FPS;
+const TIMESTEP = 1000 / targetFrameRate;
+const TOLERANCE = 0.1; // For FPS stability
 let lastRenderTimeMs = 0;
 let delta = 0;
+let deltaTimeMs = 0;
 let animationID = null;
 let gameOver = false;
 let gameWin = false;
@@ -81,11 +83,13 @@ let gameWin = false;
   activatePressToStart(initGame); // Calls initGame
 })();
 
+
 /*
  * Main Loop
+ *
+ * timestamp = performance.now(); // default
  */
 function main(timestamp) {
-  
   // Schedule animation before screen refresh
   animationID =
   window.requestAnimationFrame(main)       || 
@@ -108,14 +112,22 @@ function main(timestamp) {
   }
   
   // Throttle FPS (Settings)
-  // timestamp = performance.now(); // default
-  delta = timestamp - lastRenderTimeMs;
-  if(delta < TIMESTEP) return; // throttles fps
+  deltaTimeMs = timestamp - lastRenderTimeMs;
+  if(deltaTimeMs < TIMESTEP - TOLERANCE) return; // throttles fps
+
   lastRenderTimeMs = timestamp;
-  
+  delta = deltaTimeMs / 1000; // delta in seconds (should match 1/fps)
+
   // Update & Draw
-  update(delta);
+  update(delta); // Not quite using delta since using CSS grid..
   draw();
+
+  // Logs
+  // let currentFPS = Math.round(1 / delta);
+  // console.log(`FPS: ${currentFPS}`);
+  // console.log('timestamp: ', timestamp);
+  // console.log('TIMESTEP: ', TIMESTEP);
+  // console.log('deltaTimeMs: ', deltaTimeMs);
 }
 
 /*

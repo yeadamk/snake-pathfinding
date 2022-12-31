@@ -26,11 +26,16 @@ export function update() {
 }
 
 export function draw(gameBoard) {
-  const foodElement = document.createElement('div');
-  foodElement.style.gridRowStart = fruit.y;
-  foodElement.style.gridColumnStart = fruit.x;
-  foodElement.classList.add('apple');
-  gameBoard.appendChild(foodElement);
+  const fruitElement = document.createElement('div');
+  fruitElement.style.gridRowStart = fruit.y;
+  fruitElement.style.gridColumnStart = fruit.x;
+  fruitElement.classList.add('apple');
+  gameBoard.appendChild(fruitElement);
+
+  // Draw fruit image
+  const fruitImage = document.createElement('img');
+  fruitImage.src = 'images/smaller-apple3.png';
+  fruitElement.appendChild(fruitImage);
 }
 
 export function getScore() {
