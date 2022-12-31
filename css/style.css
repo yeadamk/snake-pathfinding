@@ -218,14 +218,28 @@ a, a:hover, a:focus, a:active {
   transition: color 0.1s;
 }
 
-.score-board-increment-effect {
-  background-color: rgba(0, 0, 0, 0.8) !important;
-  transition: background-color 0.1s !important;
+@keyframes scoreboard-increment-effect {
+  from {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  to {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 }
 
-.score-text-increment-effect {
-  color: white !important;
-  transition: color 0.1s !important;
+@keyframes scoretext-increment-effect {
+  0% {
+    color: white;
+  }
+
+  50% {
+    color: rgb(213, 213, 213);
+  }
+
+  100% {
+    color: black;
+  }
 }
 
 
@@ -310,6 +324,12 @@ a, a:hover, a:focus, a:active {
 }
 
 /* Apple */
+.apple {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .apple img {
   display: block;
   max-width: 100%;

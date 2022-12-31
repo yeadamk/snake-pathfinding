@@ -252,7 +252,7 @@ function draw() {
  * Check gameover conditions
  */
 function checkDeath() {
-  // optional: outsideGrid(getSnakeHead()) ||
+  // optional: || outsideGrid(getSnakeHead());
   gameOver = snakeIntersection();
 }
 

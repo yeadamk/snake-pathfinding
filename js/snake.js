@@ -7,7 +7,7 @@ import { getGridSize } from "./grid.js";
 /*
  * Settings
  */
-export const SNAKE_SPEED = 12; // SNAKE_SPEED PER SECOND
+export const SNAKE_SPEED = 10; // SNAKE_SPEED PER SECOND
 
 
 /*

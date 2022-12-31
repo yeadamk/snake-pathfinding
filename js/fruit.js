@@ -12,16 +12,22 @@ let score = 0;
 
 export function update() {
   if (onSnake(fruit)) {
-    expandSnake(EXPANSION_RATE);
-    fruit = getRandomFoodPosition();
-
+    
     // Play sound
     const fruitEatingSound = AudioEngine.loadAudio(AudioLibrary.GAME_SNAKE_FRUIT);
     AudioEngine.playAudio(fruitEatingSound);
+    
+    // Expand snake and get new fruit location
+    expandSnake(EXPANSION_RATE);
+    fruit = getRandomFoodPosition();
 
     // Increment score
-    animateScoreboard();
     score++;
+
+    // Animate scoreboard every 5 points
+    if(!(score % 5)) {
+      animateScoreboard();
+    }
   }
 }
 
@@ -34,7 +40,7 @@ export function draw(gameBoard) {
 
   // Draw fruit image
   const fruitImage = document.createElement('img');
-  fruitImage.src = 'images/smaller-apple3.png';
+  fruitImage.src = 'images/smaller-apple2.png';
   fruitElement.appendChild(fruitImage);
 }
 
@@ -53,12 +59,12 @@ function getRandomFoodPosition() {
 function animateScoreboard() {
   const scoreBoard = document.querySelector('#score-board');
 
-  scoreBoard.classList.add('.score-board-increment-effect');
-  scoreBoard.firstElementChild.classList.add('.score-text-increment-effect');
+  scoreBoard.style.animation = 'scoreboard-increment-effect 3s linear';
+  scoreBoard.firstElementChild.style.animation = 'scoretext-increment-effect 3s ease-out';
 
   setTimeout(() => {
-    scoreBoard.classList.remove('.score-board-increment-effect');
-    scoreBoard.firstElementChild.classList.remove('.score-text-increment-effect');
-  }, 10000);
+    scoreBoard.style.animation = '';
+    scoreBoard.firstElementChild.style.animation = '';
+  }, 3000);
   
 }
