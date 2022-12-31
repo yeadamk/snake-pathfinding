@@ -1,0 +1,315 @@
+ /* 
+ * General styles
+ */
+
+/* Default body */
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #000000;
+}
+
+/* Default anchor tags */
+a, a:hover, a:focus, a:active {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+/* Buttons */
+.button {
+  display: block;
+  border-radius: 2rem;
+  border: 0.2rem solid transparent;
+  padding: 1.2vmin 4vmin;
+  font-size: 3.2vmin;
+  font-weight: 500;
+  margin: 2vmin;
+  transition: all 0.75s;
+} 
+
+.button:hover {
+  cursor: pointer;
+  color: white;
+}
+
+/* 
+ * Start screen
+ */
+
+/* Loading screen */
+.loader {
+  position: fixed;
+  display: flex;
+  z-index: 2;
+  background-color: #CCCCCC;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.85s, visibility 0.75s;
+}
+
+/* Hide loading screen */
+.loader-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Loading icon */
+.loader::after {
+  content: "";
+  width: 15vmin;
+  height: 15vmin;
+  border: 2.5vmin solid #DDDDDD;
+  border-top-color: #d76f2a;
+  border-radius: 50%;
+  animation: loading 0.85s ease infinite;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+/* Start screen */
+.start-screen {
+  position: fixed;
+  background-color: #CCCCCC;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Title text */
+.start-screen h1 {
+  color: black;
+  font-size: 10vmin;
+  font-weight: 700;
+  margin-bottom: 2vmin;
+}
+
+/* Bouncing ball */
+.start-screen h1::after {
+  content: "";
+  position: absolute;
+  width: 2vmin;
+  height: 2vmin;
+  background-color: rgb(35, 104, 153);
+  border-radius: 50%;
+  animation: bounce .3s cubic-bezier(.5, .08, 1, .5) infinite alternate;
+}
+
+@keyframes bounce {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+/* Title text transitions */
+.start-screen a {
+  transition: color 2s;
+}
+
+/* Title text transitions (hover) */
+.start-screen a:hover {
+  color: rgb(35, 104, 153);
+  transition: color 0s;
+}
+
+/* Start button (hover) */
+.start-button:hover {
+  background-color: rgb(35, 104, 153);
+  transition: all 0.1s;
+}
+
+/* Toggle on state */
+.toggleOn {
+  background-color: rgb(100, 185, 116);
+}
+
+/* Toggle on state (hover) */
+.toggleOn:hover {
+  background-color: rgb(10, 152, 36);
+  transition: all 0.1s;
+}
+
+/* Toggle off state */
+.toggleOff {
+  background-color: rgb(244, 169, 134);
+}
+
+/* Toggle off state (hover) */
+.toggleOff:hover {
+  background-color: rgb(239, 111, 52);
+  transition: all 0.1s;
+}
+
+
+/* 
+ * In-game
+ */
+
+/* Gameboard grid */
+#game-board-container {
+  display: none;
+  position: relative;
+  height: 100vmin;
+  width: 100vmin;
+}
+
+#game-board {
+  display: grid;
+  background-color: #CCCCCC;
+  height: 100%;
+  width: 100%;
+}
+
+/* In-game scoreboard */
+#score-board {
+  /* container */
+  display: flex;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: auto;
+  height: auto;
+  top: 3vmin;
+  right: 3vmin;
+  padding: 1vmin 2vmin;
+  transition: background-color 0.7s;
+}
+
+/* In-game scoreboard text */
+#score-board h3 {
+  color: black;
+  font-weight: 700;
+  font-size: 3vmin;
+  user-select: none;
+  transition: color 0.25s;
+}
+
+/* In-game scoreboard (hover) */
+#score-board:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: background-color 0.1s;
+}
+
+/* In-game scoreboard text (hover) */
+#score-board:hover h3{
+  color: white;
+  transition: color 0.1s;
+}
+
+.score-board-increment-effect {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  transition: background-color 0.1s !important;
+}
+
+.score-text-increment-effect {
+  color: white !important;
+  transition: color 0.1s !important;
+}
+
+
+/* Pause screen */
+#pause {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgba(67, 66, 66, 0.8);
+  position: absolute;
+  z-index: 1;
+  height: 100vmin;
+  width: 100vmin;
+}
+
+/* Pause screen text */
+#pause h2 {
+  color: white;
+  font-size: 10vmin;
+  font-weight: 700;
+  margin-bottom: 2vmin;
+}
+
+/* Resume button (hover) */
+.resume-button:hover {
+  background-color: rgb(17, 143, 69);
+  transition: all 0.1s;
+}
+
+/* Restart button (hover) */
+.restart-button:hover {
+  background-color: rgb(244, 106, 27);
+  transition: all 0.1s;
+}
+
+/* End screen */
+#end-screen {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgba(67, 66, 66, 0.8);
+  position: absolute;
+  z-index: 1;
+  height: 100vmin;
+  width: 100vmin;
+  animation: fadein 1s;
+}
+
+@keyframes fadein {
+  from { opacity: 0;}
+  to { opacity: 1;}
+}
+
+/* End screen text */
+#end-screen h2 {
+  color: white;
+  font-size: 10vmin;
+  font-weight: 700;
+}
+
+/* Final score */
+#final-score {
+  color: white;
+  font-size: 6vmin;
+  font-weight: 500;
+  margin-bottom: 2vmin;
+}
+
+/* Snake head */
+.snake-head {
+  background-color: hsl(180, 68%, 22%) !important;
+  border: .2vmin solid black;
+}
+
+/* Snake body */
+.snake {
+  background-color: hsl(142, 47%, 41%);
+  border: .2vmin solid black;
+}
+
+/* Apple */
+.apple {
+  background-color: hsla(0, 97%, 56%, 0.932);
+  border: .25vmin solid black;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Yeadam Kim">
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon_io/apple-touch-icon.png?v=3">
+    <link rel="icon" sizes="32x32" href="./images/favicon_io/favicon-32x32.png?v=3">
+    <link rel="icon" sizes="16x16" href="./images/favicon_io/favicon-16x16.png?v=3">
+    <link rel="manifest" href="./images/favicon_io/site.webmanifest?v=3">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/game.js" type="module" defer></script>
+    <title>Snaky</title>
+</head>
+<body>
+    <div class="loader"></div>
+    <div class="start-screen">
+        <h1><a href="/" rel="refresh" title="refresh">Snake</a></h1>
+        <button class="button start-button" id="start">Press to Start</button>
+        <button class="button toggleOff" id="automate">Automate: Off</button>
+    </div>
+    <div id="pause">
+        <h2>Paused</h2>
+        <button class="button resume-button">Resume</button>
+        <button class="button restart-button">Restart</button>
+    </div>
+    <div id="end-screen">
+        <h2>Game Over!</h2>
+        <h3 id="final-score">Score</h3>
+        <button class="button restart-button">Restart</button>
+    </div>
+    <div id="game-board-container">
+        <div id="game-board"></div>
+        <div id="score-board"><h3>Score: 0</h3></div>
+    </div>
+</body>
+</html>
