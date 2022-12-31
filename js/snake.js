@@ -2,6 +2,7 @@
 'use strict'
 
 import { getInputDirection, isAutomateOn } from "./events.js";
+import { getGridSize } from "./grid.js";
 
 /*
  * Settings
@@ -18,23 +19,40 @@ const snakeBody = [
 let newSegments = 0;
 
 
-// update function
+// Update function
 export function update(delta) {
   if(!delta) return;
 
   addSegments();
 
-  // updates snake path
+  // Updates snake body
   for (let i = snakeBody.length - 2; i >= 0; i--) {
+    // Body follows the block in front (e.g. head)
     snakeBody[i + 1] = { ...snakeBody[i] };
   }
   
+  // Updates snake head
   const inputDirection = getInputDirection();
   snakeBody[0].x += inputDirection.x;
   snakeBody[0].y += inputDirection.y;
+
+  // Handle border collisions
+  const GRID_SIZE = getGridSize();
+  if(snakeBody[0].x < 1) {
+    snakeBody[0].x = GRID_SIZE;
+  }
+  if(snakeBody[0].x > GRID_SIZE) {
+      snakeBody[0].x = 1;
+  }
+  if(snakeBody[0].y < 1) {
+      snakeBody[0].y = GRID_SIZE;
+  }
+  if(snakeBody[0].y > GRID_SIZE) {
+      snakeBody[0].y = 1;
+  }
 }
 
-// draw function
+// Draw function
 export function draw(gameBoard) {
   snakeBody.forEach((snake, index) => {
     const snakeElement = document.createElement('div');

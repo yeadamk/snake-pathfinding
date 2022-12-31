@@ -10,16 +10,25 @@ let gamePaused = false;
 let automateOn = false;
 
 /*
- * Remove loading screen after load
+ * Remove loading screen
  */
 export function removeLoadingScreen() {
-  window.addEventListener('load', () => {
-    const loader = document.querySelector('.loader');
-    loader.classList.add('loader-hidden');
-    loader.addEventListener('transitioned', () => {
-      document.body.removeChild('loader');
-    })
-  })
+  const loader = document.querySelector('.loader');
+  loader.classList.add('loader-hidden'); // For fade-out effect
+
+  // Delete loader after transition
+  setTimeout(() => {
+    loader.remove();
+  }, 750);
+}
+
+/*
+ * Create loading screen
+ */
+export function createLoadingScreen() {
+  const loader = document.createElement('div');
+  loader.classList.add('loader');
+  document.body.prepend(loader);
 }
 
 
@@ -40,15 +49,21 @@ export function activateAutomationButton() {
 export function activatePressToStart(initFunc) {
   document.querySelector('#start')
   .addEventListener("click", () => {
+    // Display loading screen
+    createLoadingScreen();
+
     // Play sound
     const startSound = new Audio(AudioLibrary.UI_START_BUTTON);
     startSound.play();
 
     // Make sure audio comes out before refreshing
-    setTimeout(() => {
+    startSound.addEventListener('canplaythrough', () => {
       // Call initGame() in game.js
       initFunc();
-    }, 100);
+
+      // Remove loading screen
+      removeLoadingScreen();
+    });
   }); 
 }
 

@@ -54,6 +54,6 @@ function animateScoreboard() {
   setTimeout(() => {
     scoreBoard.classList.remove('.score-board-increment-effect');
     scoreBoard.firstElementChild.classList.remove('.score-text-increment-effect');
-  }, 200);
+  }, 10000);
   
 }

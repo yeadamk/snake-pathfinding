@@ -30,6 +30,7 @@ import {
   initKeyDownEvents, 
   initClickEvents, 
   isGamePaused, 
+  createLoadingScreen,
   removeLoadingScreen,
   activateAutomationButton,
   activatePressToStart,
@@ -67,11 +68,13 @@ let gameWin = false;
  * Load start screen
  */
 (function() {
+  // Remove loading screen after load is complete
+  window.addEventListener('load', () => {
+    removeLoadingScreen();
+  });
+
   // Preload audio
   AudioEngine.loadAll();
-
-  // Remove loading screen 
-  removeLoadingScreen();
 
   // Activate buttons
   activateAutomationButton();
@@ -237,7 +240,8 @@ function draw() {
  * Check gameover conditions
  */
 function checkDeath() {
-  gameOver = outsideGrid(getSnakeHead()) || snakeIntersection();
+  // optional: outsideGrid(getSnakeHead()) ||
+  gameOver = snakeIntersection();
 }
 
 /*
