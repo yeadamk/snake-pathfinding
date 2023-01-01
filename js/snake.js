@@ -38,7 +38,6 @@ export function update(delta) {
   } else {
     inputDirection = getInputDirection();
 
-    // BUG FIX HERE
     if(inputDirection.x === 0 && inputDirection.y === 0) {
       inputDirection = getLastAgentDirection();
     }

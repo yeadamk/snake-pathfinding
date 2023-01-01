@@ -4,7 +4,6 @@
 import { getLastInputDirection } from "./events.js";
 import { getGridSize } from "./grid.js";
 
-let agentDirection = { x: 0, y: 0 };
 let lastAgentDirection = { x: 0, y: 0 };
 const lastInputDirection = getLastInputDirection();
 
@@ -12,6 +11,52 @@ const lastInputDirection = getLastInputDirection();
 export function getAgentDirection(snakeBody) {
   const GRID_SIZE = getGridSize();
   const FRUIT_LOCATION = getFruitLocation();
+
+  const agentDirection = bruteForce(snakeBody);
+
+  lastAgentDirection = agentDirection;
+  return agentDirection;
+}
+
+export function getLastAgentDirection() {
+  return lastAgentDirection;
+}
+
+function goUp() {
+  if (lastInputDirection.y !== 0) return;
+  return { x: 0, y: -1 };
+}
+
+function goDown() {
+  if (lastInputDirection.y !== 0) return;
+  return { x: 0, y: 1 };
+}
+
+function goLeft() {
+  if (lastInputDirection.x !== 0) return;
+  return { x: -1, y: 0 };
+}
+
+function goRight() {
+  if (lastInputDirection.x !== 0) return;
+  return { x: 1, y: 0 };
+}
+
+async function getFruitLocation() {
+  // Wait for the fruit element to be created
+  const fruitElement = await new Promise(() => {
+    document.querySelector('.apple');
+  });
+  
+  let x = fruitElement.style.gridColumnStart;
+  let y = fruitElement.style.gridRowStart;
+
+  return {x, y};
+}
+
+function bruteForce(snakeBody) {
+  const GRID_SIZE = getGridSize();
+  let agentDirection = { x: 0, y: 0 };
 
   // First column
   if(snakeBody[0].x === 1) {
@@ -73,42 +118,5 @@ export function getAgentDirection(snakeBody) {
     }
   }
 
-  lastAgentDirection = agentDirection;
   return agentDirection;
-}
-
-function goUp() {
-  if (lastInputDirection.y !== 0) return;
-  return { x: 0, y: -1 };
-}
-
-function goDown() {
-  if (lastInputDirection.y !== 0) return;
-  return { x: 0, y: 1 };
-}
-
-function goLeft() {
-  if (lastInputDirection.x !== 0) return;
-  return { x: -1, y: 0 };
-}
-
-function goRight() {
-  if (lastInputDirection.x !== 0) return;
-  return { x: 1, y: 0 };
-}
-
-async function getFruitLocation() {
-  // Wait for the fruit element to be created
-  const fruitElement = await new Promise(() => {
-    document.querySelector('.apple');
-  });
-  
-  let x = fruitElement.style.gridColumnStart;
-  let y = fruitElement.style.gridRowStart;
-
-  return {x, y};
-}
-
-export function getLastAgentDirection() {
-  return lastAgentDirection;
 }
