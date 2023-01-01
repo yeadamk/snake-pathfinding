@@ -1,13 +1,14 @@
 // snake.js
 'use strict'
 
-import { getInputDirection, isAutomateOn } from "./events.js";
-import { getGridSize } from "./grid.js";
+import { getInputDirection, isAutomateOn } from './events.js';
+import { getGridSize } from './grid.js';
+import { getAgentDirection, getLastAgentDirection } from './agent.js'
 
 /*
  * Settings
  */
-export const SNAKE_SPEED = 10; // SNAKE_SPEED PER SECOND
+export const SNAKE_SPEED = 40; // SNAKE_SPEED PER SECOND
 
 
 /*
@@ -17,7 +18,7 @@ const snakeBody = [
   {x: 2, y: 2} // Starting position
 ];
 let newSegments = 0;
-
+let inputDirection = 0;
 
 // Update function
 export function update(delta) {
@@ -32,7 +33,17 @@ export function update(delta) {
   }
   
   // Updates snake head
-  const inputDirection = getInputDirection();
+  if(isAutomateOn()) {
+    inputDirection = getAgentDirection(snakeBody);
+  } else {
+    inputDirection = getInputDirection();
+
+    // BUG FIX HERE
+    if(inputDirection.x === 0 && inputDirection.y === 0) {
+      inputDirection = getLastAgentDirection();
+    }
+  }
+
   snakeBody[0].x += inputDirection.x; // * delta;
   snakeBody[0].y += inputDirection.y; // * delta;
 
@@ -55,16 +66,21 @@ export function update(delta) {
 // Draw function
 export function draw(gameBoard) {
   snakeBody.forEach((snake, index) => {
+    const snakeContainer = document.createElement('div');
     const snakeElement = document.createElement('div');
-    snakeElement.style.gridRowStart = snake.y;
-    snakeElement.style.gridColumnStart = snake.x;
+    snakeContainer.style.gridRowStart = snake.y;
+    snakeContainer.style.gridColumnStart = snake.x;
 
     if (index === 0) {
       snakeElement.classList.add('snake-head');
+    } else {
+      snakeElement.classList.add('snake-body');
     }
 
-    snakeElement.classList.add('snake');
-    gameBoard.appendChild(snakeElement);
+    snakeContainer.classList.add('snake');
+
+    gameBoard.appendChild(snakeContainer);
+    snakeContainer.appendChild(snakeElement);
   });
 }
 

@@ -24,8 +24,8 @@ export function update() {
     // Increment score
     score++;
 
-    // Animate scoreboard every 5 points
-    if(!(score % 5)) {
+    // Animate scoreboard every point
+    if(true || !(score % 5)) { // can change later to every x points
       animateScoreboard();
     }
   }
@@ -38,7 +38,7 @@ export function draw(gameBoard) {
   fruitElement.classList.add('apple');
   gameBoard.appendChild(fruitElement);
 
-  // Draw fruit image
+  // Load fruit image
   const fruitImage = document.createElement('img');
   fruitImage.src = 'images/smaller-apple2.png';
   fruitElement.appendChild(fruitImage);
@@ -58,13 +58,11 @@ function getRandomFoodPosition() {
 
 function animateScoreboard() {
   const scoreBoard = document.querySelector('#score-board');
-
-  scoreBoard.style.animation = 'scoreboard-increment-effect 3s linear';
-  scoreBoard.firstElementChild.style.animation = 'scoretext-increment-effect 3s ease-out';
+  scoreBoard.style.animation = '';
+  scoreBoard.firstElementChild.style.animation = '';
 
   setTimeout(() => {
-    scoreBoard.style.animation = '';
-    scoreBoard.firstElementChild.style.animation = '';
-  }, 3000);
-  
+    scoreBoard.style.animation = 'scoreboard-increment-effect 3s linear';
+    scoreBoard.firstElementChild.style.animation = 'scoretext-increment-effect 3s ease-out';
+  }, 10);
 }

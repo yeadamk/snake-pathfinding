@@ -21,7 +21,7 @@ export const AudioEngine = (function() {
 
   function loadAudioFile(src) {
     const audioElement = new Audio(src);
-    audioElement.load();
+    audioElement.autoplay = false;
 
     return audioElement;
   }
