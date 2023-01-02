@@ -12,8 +12,9 @@ export function getAgentDirection(snakeBody) {
   const GRID_SIZE = getGridSize();
   const FRUIT_LOCATION = getFruitLocation();
 
-  const agentDirection = bruteForce(snakeBody);
-
+  // Get agent direction
+  const agentDirection = bruteforce(snakeBody);
+  
   lastAgentDirection = agentDirection;
   return agentDirection;
 }
@@ -22,6 +23,9 @@ export function getLastAgentDirection() {
   return lastAgentDirection;
 }
 
+// Agent direction
+// Trigger keypress if needed
+// e.g. element.dispatchEvent(new KeyboardEvent('keydown', {'key':'ArrowUp'} ));
 function goUp() {
   if (lastInputDirection.y !== 0) return;
   return { x: 0, y: -1 };
@@ -54,7 +58,7 @@ async function getFruitLocation() {
   return {x, y};
 }
 
-function bruteForce(snakeBody) {
+function bruteforce(snakeBody) {
   const GRID_SIZE = getGridSize();
   let agentDirection = { x: 0, y: 0 };
 
