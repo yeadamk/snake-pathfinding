@@ -13,12 +13,20 @@ export const AudioEngine = (function() {
     return AudioLibrary[key]; // src
   }
 
+  // Caches every audio file in AudioLibrary
+  // Returns an array of audio elements
   function loadAllAudioFiles() {
+    let loadedAudioFiles = [];
+
     Object.values(AudioLibrary).forEach(src => {
-      loadAudioFile(src);
+      loadedAudioFiles.push(loadAudioFile(src));
     })
+
+    return loadedAudioFiles;
   }
 
+  // Caches the given audio file
+  // Returns the audio element
   function loadAudioFile(src) {
     const audioElement = new Audio(src);
     audioElement.autoplay = false;
@@ -26,9 +34,15 @@ export const AudioEngine = (function() {
     return audioElement;
   }
 
-  function playAudioFile(audioElement) {
-    audioElement.addEventListener('canplaythrough', () => {
+  // Plays audio
+  // Use 'await' to play audio before proceeding
+  function playAudio(audioElement) {
+    return new Promise((resolve, reject) => {
+      if(!audioElement) {
+        reject(new Error("Audio element not found!"));
+      }
       audioElement.play();
+      audioElement.onended = resolve; // Resolve when audio ends
     });
   }
 
@@ -36,7 +50,7 @@ export const AudioEngine = (function() {
     getAudioSrc: getAudioFromAudioLibrary,
     loadAll: loadAllAudioFiles,
     loadAudio: loadAudioFile,
-    playAudio: playAudioFile, // Don't use this yet
+    playAudio: playAudio,
   };
 
 })(); 

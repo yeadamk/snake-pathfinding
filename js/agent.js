@@ -43,7 +43,7 @@ function goRight() {
 }
 
 async function getFruitLocation() {
-  // Wait for the fruit element to be created
+  // Wait to fetch the fruit element
   const fruitElement = await new Promise(() => {
     document.querySelector('.apple');
   });

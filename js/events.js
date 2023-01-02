@@ -48,22 +48,21 @@ export function activateAutomationButton() {
  */
 export function activatePressToStart(initFunc) {
   document.querySelector('#start')
-  .addEventListener("click", () => {
+  .addEventListener("click", async () => {
     // Display loading screen
     createLoadingScreen();
 
     // Play sound
-    const startSound = new Audio(AudioLibrary.UI_START_BUTTON);
-    startSound.play();
+    const startSound = AudioEngine.loadAudio(AudioLibrary.UI_START_BUTTON);
 
-    // Make sure audio comes out before refreshing
-    startSound.addEventListener('canplaythrough', () => {
-      // Call initGame() in game.js
-      initFunc();
+    // Make sure audio comes out before proceeding
+    await AudioEngine.playAudio(startSound);
 
-      // Remove loading screen
-      removeLoadingScreen();
-    });
+    // Call initGame() in game.js
+    initFunc();
+
+    // Remove loading screen
+    removeLoadingScreen();
   }); 
 }
 
@@ -126,27 +125,27 @@ export function initClickEvents() {
   // Restart button
   const restartButtons = document.querySelectorAll('.restart-button');
   for(let restartButton of restartButtons) {
-   restartButton.addEventListener("click", () => {
-    // Play sound
-    const restartSound = AudioEngine.loadAudio(AudioLibrary.UI_START_BUTTON);
-    AudioEngine.playAudio(restartSound);
-
-    // Refresh -- make sure audio comes out before refreshing
-    setTimeout(() => {
-      window.location = '/';
-    }, 200);
+   restartButton.addEventListener("click", async () => {
+     // Play sound
+     const restartSound = AudioEngine.loadAudio(AudioLibrary.UI_START_BUTTON);
+     await AudioEngine.playAudio(restartSound);
+    
+    // Refresh
+    window.location = '/';
    });
   }
 
   // Resume button
   const resumeButton = document.querySelector('.resume-button');
-  resumeButton.addEventListener("click", () => {
+  resumeButton.addEventListener("click", async () => {
   // Play sound
   const resumeSound = AudioEngine.loadAudio(AudioLibrary.UI_START_BUTTON);
-  AudioEngine.playAudio(resumeSound);
 
-    // Set gamePaused to false
-    gamePaused = false
+  // Make sure audio comes out before proceeding
+  await AudioEngine.playAudio(resumeSound);
+
+  // Set gamePaused to false
+  gamePaused = false
   });
 }
 
@@ -181,17 +180,22 @@ function toggleAutomate() {
 function togglePause() {
 
   // Play sound
-  const pauseSound = AudioEngine.loadAudio(AudioLibrary.UI_PAUSE);
-  AudioEngine.playAudio(pauseSound);
-
-  // Toggle pause after playing the sound
-  pauseSound.addEventListener('canplaythrough', () => {
-    if(gamePaused) {
-      gamePaused = false;
-    } else {
-      gamePaused = true;
+  (async () => {
+    // No need to catch error here but just trying things out
+    try {
+      const pauseSound = AudioEngine.loadAudio(AudioLibrary.UI_PAUSE);
+      await AudioEngine.playAudio(pauseSound);
+    } catch (err) {
+      console.error(err);
     }
-  })
+  })();
+
+  // Toggle pause
+  if(gamePaused) {
+    gamePaused = false;
+  } else {
+    gamePaused = true;
+  }
 }
 
 function toggleAutomationButton() {
