@@ -8,7 +8,7 @@ A snake game (built in Chrome)
 
 ## License
 
-© 2021-2022 Yeadam Kim
+© 2021-2023 Yeadam Kim
 
 Licensed under the [MIT License](LICENSE).
 
