@@ -121,7 +121,7 @@ function main(timestamp) {
   // Update & Draw
   update(delta); // Not quite using delta since using CSS grid..
 
-  if(!(gameOver || gameWin)){
+  if(!gameOver){
     draw();
   }
 
@@ -265,7 +265,7 @@ function checkDeath() {
 function checkWinCondition() {
   const GRID_SIZE = getGridSize();
 
-  gameWin = (getScore() === (GRID_SIZE * GRID_SIZE -1 )) ? true : false;
+  gameWin = (getScore() === (GRID_SIZE * GRID_SIZE)) ? true : false;
 }
 
 /*

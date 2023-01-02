@@ -7,12 +7,12 @@ import { getGridSize } from "./grid.js";
 let lastAgentDirection = { x: 0, y: 0 };
 const lastInputDirection = getLastInputDirection();
 
-// Currently works with even GRID_SIZE only
 export function getAgentDirection(snakeBody) {
   const GRID_SIZE = getGridSize();
   const FRUIT_LOCATION = getFruitLocation();
 
   // Get agent direction
+  // Currently works with even GRID_SIZE only
   const agentDirection = bruteforce(snakeBody);
   
   lastAgentDirection = agentDirection;
@@ -58,6 +58,7 @@ async function getFruitLocation() {
   return {x, y};
 }
 
+// The Hamiltonian cycle method
 function bruteforce(snakeBody) {
   const GRID_SIZE = getGridSize();
   let agentDirection = { x: 0, y: 0 };

@@ -2,17 +2,24 @@
 'use strict'
 
 import { onSnake, expandSnake } from './snake.js'
-import { getRandomGridPosition } from './grid.js'
+import { getGridSize, getRandomGridPosition } from './grid.js'
 import { AudioEngine } from "./audio.js";
 import { AudioLibrary } from "./audioLibrary.js";
 
+let score = 0;
 let fruit = getRandomFoodPosition();
 const EXPANSION_RATE = 1;
-let score = 0;
 
 export function update() {
   if (onSnake(fruit)) {
+    // Increment score
+    score++;
     
+    // Animate scoreboard every point
+    if(true || !(score % 5)) { // can change later to every x points
+      animateScoreboard();
+    }
+
     // Play sound
     const fruitEatingSound = AudioEngine.loadAudio(AudioLibrary.GAME_SNAKE_FRUIT);
     AudioEngine.playAudio(fruitEatingSound);
@@ -20,28 +27,23 @@ export function update() {
     // Expand snake and get new fruit location
     expandSnake(EXPANSION_RATE);
     fruit = getRandomFoodPosition();
-
-    // Increment score
-    score++;
-
-    // Animate scoreboard every point
-    if(true || !(score % 5)) { // can change later to every x points
-      animateScoreboard();
-    }
   }
 }
 
 export function draw(gameBoard) {
-  const fruitElement = document.createElement('div');
-  fruitElement.style.gridRowStart = fruit.y;
-  fruitElement.style.gridColumnStart = fruit.x;
-  fruitElement.classList.add('apple');
-  gameBoard.appendChild(fruitElement);
-
-  // Load fruit image
-  const fruitImage = document.createElement('img');
-  fruitImage.src = 'images/smaller-apple2.png';
-  fruitElement.appendChild(fruitImage);
+  // Only draw if fruit is not NULL
+  if (fruit) {
+    const fruitElement = document.createElement('div');
+    fruitElement.style.gridRowStart = fruit.y;
+    fruitElement.style.gridColumnStart = fruit.x;
+    fruitElement.classList.add('apple');
+    gameBoard.appendChild(fruitElement);
+  
+    // Load fruit image
+    const fruitImage = document.createElement('img');
+    fruitImage.src = 'images/smaller-apple2.png';
+    fruitElement.appendChild(fruitImage);
+  }
 }
 
 export function getScore() {
@@ -49,6 +51,12 @@ export function getScore() {
 }
 
 function getRandomFoodPosition() {
+  // Don't spawn another fruit when all other grids are filled
+  const GRID_SIZE = getGridSize();
+  if(score === GRID_SIZE * GRID_SIZE) {
+    return null;
+  }
+
   let newFoodPosition;
   while (newFoodPosition == null || onSnake(newFoodPosition)) {
     newFoodPosition = getRandomGridPosition();

@@ -4,7 +4,7 @@
 /*
  * Settings
  */
-const GRID_SIZE = 6; // MUST BE EVEN TO USE AUTOMODE
+const GRID_SIZE = 16; // MUST BE EVEN TO USE AUTOMODE
 
 export function getRandomGridPosition() {
   return {

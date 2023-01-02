@@ -8,7 +8,7 @@ import { getAgentDirection, getLastAgentDirection } from './agent.js'
 /*
  * Settings
  */
-export const SNAKE_SPEED = 40; // SNAKE_SPEED PER SECOND
+export const SNAKE_SPEED = 10; // SNAKE_SPEED PER SECOND
 
 
 /*
