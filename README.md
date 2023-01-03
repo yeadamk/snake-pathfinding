@@ -1,11 +1,11 @@
 # Overview
 
-A snake game built in Vanilla JavaScript using different pathfinding algorithms:
+A snake game built in Vanilla JavaScript using different pathfinding algorithms:  
 - Hamiltonian cycle
 - Breath First Search
 - A*
 
-Use Chrome to run the program! -- problems may arise in other browsers (compatibility issues)
+Use Chrome to run the program! -- problems may arise in other browsers (compatibility issues)  
 
 ## Controls
 
@@ -14,7 +14,7 @@ Use Chrome to run the program! -- problems may arise in other browsers (compatib
 | W/A/S/D | Move the snake |
 | Arrow keys | Move the snake |
 | Spacebar | Toggle automation |
-| P or Esc | Pause game |
+| P or Esc | Pause game |  
 
 
 
