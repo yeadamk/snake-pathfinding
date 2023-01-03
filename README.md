@@ -12,8 +12,7 @@ A snake game built in Vanilla JavaScript using different pathfinding algorithms:
 
 | **Controls** | **Description** |
 | ----------- | ----------- |
-| W/A/S/D | Move the snake |
-| Arrow keys | Move the snake |
+| W/A/S/D or Arrow Keys| Move the snake |
 | Spacebar | Toggle automation |
 | P or Esc | Pause game |
 
