@@ -9,9 +9,9 @@ Use Chrome to run the program! -- problems may arise in other browsers (compatib
 
 ## Controls
 
-W/A/S/D OR Arrow Keys - Control the snake
-Spacebar              - Toggles automation
-Escape/P              - Pause
+W/A/S/D OR Arrow Keys - Control the snake\
+Spacebar              - Toggles automation\
+Escape/P              - Pause\
 
 ## License
 
