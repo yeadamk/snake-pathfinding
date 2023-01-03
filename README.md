@@ -15,6 +15,11 @@ Spacebar: Toggles automation
 
 Escape/P: Pause game
 
+| Syntax | Description |
+| ----------- | ----------- |
+| Header | Title |
+| Paragraph | Text |
+
 ## License
 
 © 2021-2022 Yeadam Kim
