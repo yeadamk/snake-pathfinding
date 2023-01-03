@@ -14,8 +14,6 @@ A snake game built in Vanilla JavaScript using different pathfinding algorithms:
 | Spacebar | Toggle automation |
 | P or Esc | Pause game |
 
-> Use **Chrome** to run the program! -- problems may arise in other browsers (compatibility issues)
-
 ## License
 
 © 2021-2022 Yeadam Kim
@@ -23,5 +21,7 @@ A snake game built in Vanilla JavaScript using different pathfinding algorithms:
 Licensed under the [MIT License](LICENSE).
 
 ---
+
+> Use **Chrome** to run the program! -- problems may arise in other browsers (compatibility issues)
 
 ![screenshot](/images/screenshot.png)
