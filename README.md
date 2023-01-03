@@ -5,6 +5,9 @@ A snake game built in Vanilla JavaScript using different pathfinding algorithms:
 - Breath First Search
 - A*
 
+> NOTE: Use **Chrome** to run the program!
+> Problems may arise in other browsers (compatibility issues)
+
 ## Controls
 
 | **Controls** | **Description** |
@@ -21,7 +24,5 @@ A snake game built in Vanilla JavaScript using different pathfinding algorithms:
 Licensed under the [MIT License](LICENSE).
 
 ---
-
-> Use **Chrome** to run the program! -- problems may arise in other browsers (compatibility issues)
 
 ![screenshot](/images/screenshot.png)
