@@ -5,10 +5,15 @@ A snake game built in Vanilla JavaScript using different pathfinding algorithms:
 - Breath First Search
 - A*
 
-Use Chrome -- problems may arise in other browsers (compatibility issues)
+Use Chrome to run the program! -- problems may arise in other browsers (compatibility issues)
 
+## Controls
 
-# License
+W/A/S/D OR Arrow Keys - Control the snake
+Spacebar              - Toggles automation
+Escape/P              - Pause
+
+## License
 
 © 2021-2022 Yeadam Kim
 
