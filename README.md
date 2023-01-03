@@ -6,7 +6,7 @@ A snake game built in Vanilla JavaScript using different pathfinding algorithms:
 - A*
 
 > NOTE: Use **Chrome** to run the program!  
-> Problems may arise in other browsers (compatibility issues)
+> Problems may arise in other browsers due to compatibility issues
 
 ## Controls
 
