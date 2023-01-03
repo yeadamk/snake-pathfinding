@@ -1,4 +1,4 @@
-# Overview
+## Snake
 
 A snake game built in Vanilla JavaScript using different pathfinding algorithms:  
 - Hamiltonian cycle
@@ -7,7 +7,7 @@ A snake game built in Vanilla JavaScript using different pathfinding algorithms:
 
 Use Chrome to run the program! -- problems may arise in other browsers (compatibility issues)  
 
-## Controls
+### Controls
 
 | Controls | Description |
 | ----------- | ----------- |
@@ -18,7 +18,7 @@ Use Chrome to run the program! -- problems may arise in other browsers (compatib
 
 
 
-## License
+### License
 
 © 2021-2022 Yeadam Kim
 
