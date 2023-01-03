@@ -9,16 +9,13 @@ Use Chrome to run the program! -- problems may arise in other browsers (compatib
 
 ## Controls
 
-Control the snake with arrow keys or W/A/S/D.
-
-Spacebar: Toggles automation
-
-Escape/P: Pause game
-
-| Syntax | Description |
+| Controls | Description |
 | ----------- | ----------- |
-| Header | Title |
-| Paragraph | Text |
+| W/A/S/D | Move the snake |
+| Arrow keys | Move the snake |
+| Spacebar | Toggle automation |
+| P or Esc | Pause game |
+
 
 
 ## License
