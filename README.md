@@ -1,4 +1,4 @@
-## Snake
+# Snake
 
 A snake game built in Vanilla JavaScript using different pathfinding algorithms:  
 - Hamiltonian cycle
