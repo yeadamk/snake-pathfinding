@@ -8,7 +8,7 @@ A snake game built in Vanilla JavaScript using different pathfinding algorithms:
 Use Chrome -- problems may arise in other browsers (compatibility issues)
 
 
-## License
+# License
 
 © 2021-2022 Yeadam Kim
 
