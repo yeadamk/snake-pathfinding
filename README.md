@@ -5,6 +5,8 @@ A snake game built in Vanilla JavaScript using different pathfinding algorithms:
 - Breath First Search
 - A*
 
+The pathfinding algorithms can be changed in the file agent.js  
+
 > NOTE: Use **Chrome** to run the program!  
 > Problems may arise in other browsers due to compatibility issues
 
@@ -15,7 +17,6 @@ A snake game built in Vanilla JavaScript using different pathfinding algorithms:
 | W/A/S/D or Arrow Keys| Move the snake |
 | Spacebar | Toggle automation |
 | P or Esc | Pause game |
-| The pathfinding algorithms can be changed in the file agent.js |
 
 ## License
 
