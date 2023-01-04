@@ -1,6 +1,6 @@
 # Snake
 
-A snake game built in Vanilla JavaScript using different pathfinding algorithms:  
+A classic snake game built in Vanilla JavaScript using different pathfinding algorithms:  
 - Hamiltonian cycle
 - Breath First Search
 - A*
