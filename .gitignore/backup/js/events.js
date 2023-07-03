@@ -4,11 +4,10 @@
 import { AudioEngine } from "./audio.js";
 import { AudioLibrary } from "./audioLibrary.js";
 
-let inputDirection = [0, 0];
-let lastInputDirection = [0, 0];
+let inputDirection = { x: 0, y: 0 };
+let lastInputDirection = { x: 0, y: 0 };
 let gamePaused = false;
 let automateOn = false;
-let borderCollision = true;
 
 /*
  * Remove loading screen
@@ -75,47 +74,43 @@ export function initKeyDownEvents() {
     switch (e.key) {
       case 'w':
       case 'ArrowUp':
-        if (lastInputDirection[1] !== 0) break;
+        if (lastInputDirection.y !== 0) break;
         if (isAutomateOn()) break;
-        inputDirection = [0, -1];
+        inputDirection = { x: 0, y: -1 };
         break;
       
       case 's':
       case 'ArrowDown':
-        if (lastInputDirection[1] !== 0) break;
+        if (lastInputDirection.y !== 0) break;
         if (isAutomateOn()) break;
-        inputDirection = [0, 1];
+        inputDirection = { x: 0, y: 1 };
         break;
 
       case 'a':
       case 'ArrowLeft':
-        if (lastInputDirection[0] !== 0) break;
+        if (lastInputDirection.x !== 0) break;
         if (isAutomateOn()) break;
-        inputDirection = [-1, 0];
+        inputDirection = { x: -1, y: 0 };
         break;
   
       case 'd':
       case 'ArrowRight':
-        if (lastInputDirection[0] !== 0) break;
+        if (lastInputDirection.x !== 0) break;
         if (isAutomateOn()) break;
-        inputDirection = [1, 0];
+        inputDirection = { x: 1, y: 0 };
         break;
   
       case ' ':
         toggleAutomate();
-        displayToggleMessage('Automate', automateOn);
+        displayToggleMessage();
+        console.log('automation ' + (automateOn ? 'turned on' : 'turned off'));
         break;
   
       case 'p':
       case 'Escape':
         togglePause();
         break;
-
-      case 'b':
-        toggleBorderCollision();
-        displayToggleMessage('Border Collision', borderCollision);
-        break;
-
+  
       default:
         break;
     }
@@ -174,10 +169,6 @@ export function isAutomateOn() {
   return automateOn;
 }
 
-export function isBorderCollisionOn() {
-  return borderCollision;
-}
-
 function toggleAutomate() {
   if(automateOn) {
     automateOn = false;
@@ -207,15 +198,6 @@ function togglePause() {
   }
 }
 
-export function toggleBorderCollision() {
-  // Toggle border collision
-  if(borderCollision) {
-    borderCollision = false;
-  } else {
-    borderCollision = true;
-  }
-}
-
 function toggleAutomationButton() {
   const automateButton = document.querySelector('#automate');
 
@@ -239,21 +221,17 @@ function toggleAutomationButton() {
   }
 }
 
-// e.g. msg: On/Off (based on status)
-function displayToggleMessage(msg, status) {
-  const OnOffMessage = document.querySelector('#onOffMessage');
-  OnOffMessage.style.animation = '';
+function displayToggleMessage() {
+  const automateOnOffMessage = document.querySelector('#automateOnOffMessage');
+  automateOnOffMessage.style.animation = '';
   
-  if(status) {
-    OnOffMessage.firstElementChild.innerHTML = msg + ': on';
+  if(automateOn) {
+    automateOnOffMessage.firstElementChild.innerHTML = 'Automate on';
   } else {
-    OnOffMessage.firstElementChild.innerHTML = msg + ': off';
+    automateOnOffMessage.firstElementChild.innerHTML = 'Automate off';
   }
 
-  // For logging
-  console.log(msg + (status ? ': turned ON' : ': turned OFF'));
-
   setTimeout(() => {
-    OnOffMessage.style.animation = 'fadeout 2s ease-out';
+    automateOnOffMessage.style.animation = 'fadeout 2s ease-out';
   }, 10);
 }

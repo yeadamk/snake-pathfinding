@@ -34,8 +34,8 @@ export function draw(gameBoard) {
   // Only draw if fruit is not NULL
   if (fruit) {
     const fruitElement = document.createElement('div');
-    fruitElement.style.gridRowStart = fruit[1];
-    fruitElement.style.gridColumnStart = fruit[0];
+    fruitElement.style.gridRowStart = fruit.y;
+    fruitElement.style.gridColumnStart = fruit.x;
     fruitElement.classList.add('apple');
     gameBoard.appendChild(fruitElement);
   
@@ -49,10 +49,6 @@ export function draw(gameBoard) {
 export function getScore() {
   return score;
 }
-
-// export function getFruitLocation() {
-//   return fruit;
-// }
 
 function getRandomFoodPosition() {
   // Don't spawn another fruit when all other grids are filled
@@ -74,7 +70,7 @@ function animateScoreboard() {
   scoreBoard.firstElementChild.style.animation = '';
 
   setTimeout(() => {
-    scoreBoard.style.animation = 'scoreboard-increment-effect .8s linear';
-    scoreBoard.firstElementChild.style.animation = 'scoretext-increment-effect .5s ease-out';
+    scoreBoard.style.animation = 'scoreboard-increment-effect 3s linear';
+    scoreBoard.firstElementChild.style.animation = 'scoretext-increment-effect 3s ease-out';
   }, 10);
 }

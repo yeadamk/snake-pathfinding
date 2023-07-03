@@ -10,6 +10,7 @@ import {
   update as updateSnake, 
   draw as drawSnake, 
   SNAKE_SPEED, 
+  BORDER_COLLISION,
   getSnakeHead, 
   snakeIntersection,
 } from './snake.js';
@@ -30,7 +31,6 @@ import {
   initKeyDownEvents, 
   initClickEvents, 
   isGamePaused, 
-  isBorderCollisionOn,
   createLoadingScreen,
   removeLoadingScreen,
   activateAutomationButton,
@@ -52,10 +52,9 @@ if (!navigator.userAgent.includes('Chrome')) {
 
 // Mutable Settings
 const SHOW_FPS = false;
-const SHOW_LOGS = false;
 const targetFrameRate = SNAKE_SPEED;
 
-// DO NOT CHANGE
+// Immutable Settings
 const gameBoard = document.querySelector('#game-board');
 const TIMESTEP = 1000 / targetFrameRate;
 const TOLERANCE = 0.1; // For FPS stability
@@ -128,13 +127,11 @@ function main(timestamp) {
   }
 
   // Logs
-  if(SHOW_LOGS) {
-    let currentFPS = Math.round(1 / delta);
-    console.log(`FPS: ${currentFPS}`);
-    console.log('timestamp: ', timestamp);
-    console.log('TIMESTEP: ', TIMESTEP);
-    console.log('deltaTimeMs: ', deltaTimeMs);
-  }
+  // let currentFPS = Math.round(1 / delta);
+  // console.log(`FPS: ${currentFPS}`);
+  // console.log('timestamp: ', timestamp);
+  // console.log('TIMESTEP: ', TIMESTEP);
+  // console.log('deltaTimeMs: ', deltaTimeMs);
 }
 
 /*
@@ -259,8 +256,6 @@ function draw() {
  * Check gameover conditions
  */
 function checkDeath() {
-  const BORDER_COLLISION = isBorderCollisionOn();
-
   if(BORDER_COLLISION) {
     gameOver = outsideGrid(getSnakeHead()) || snakeIntersection();
   } else {

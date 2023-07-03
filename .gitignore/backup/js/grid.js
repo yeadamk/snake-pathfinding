@@ -4,19 +4,19 @@
 /*
  * Settings
  */
-const GRID_SIZE = 16; // MUST BE EVEN TO USE HAMILTONIAN 
+const GRID_SIZE = 16; // MUST BE EVEN TO USE AUTOMODE
 
 export function getRandomGridPosition() {
-  return [
-    Math.floor(Math.random() * GRID_SIZE) + 1, 
-    Math.floor(Math.random() * GRID_SIZE) + 1
-  ];
+  return {
+    x: Math.floor(Math.random() * GRID_SIZE) + 1,
+    y: Math.floor(Math.random() * GRID_SIZE) + 1
+  };
 }
 
 export function outsideGrid(position) {
   return (
-    (position[0] < 1) || (position[0] > GRID_SIZE) ||
-    (position[1] < 1) || (position[1] > GRID_SIZE)
+    (position.x < 1) || (position.x > GRID_SIZE) ||
+    (position.y < 1) || (position.y > GRID_SIZE)
   );
 }
 

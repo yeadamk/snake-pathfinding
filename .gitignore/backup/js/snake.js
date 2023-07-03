@@ -1,7 +1,7 @@
 // snake.js
 'use strict'
 
-import { getInputDirection, isAutomateOn, isBorderCollisionOn } from './events.js';
+import { getInputDirection, isAutomateOn } from './events.js';
 import { getGridSize } from './grid.js';
 import { getAgentDirection, getLastAgentDirection } from './agent.js'
 
@@ -9,13 +9,14 @@ import { getAgentDirection, getLastAgentDirection } from './agent.js'
  * Settings
  */
 export const SNAKE_SPEED = 10; // SNAKE_SPEED PER SECOND
+export const BORDER_COLLISION = true;
 
 
 /*
  * Initial conditions
  */
 const snakeBody = [
-  [2, 2] // Starting position [x, y]
+  {x: 2, y: 2} // Starting position
 ];
 let newSegments = 0;
 let inputDirection = 0;
@@ -38,30 +39,30 @@ export function update(delta) {
   } else {
     inputDirection = getInputDirection();
 
-    if(inputDirection[0] === 0 && inputDirection[1] === 0) {
+    if(inputDirection.x === 0 && inputDirection.y === 0) {
       inputDirection = getLastAgentDirection();
     }
   }
 
-  // Add inputDirection to snake body [x, y]
-  snakeBody[0][0] += inputDirection[0]; // * delta;
-  snakeBody[0][1] += inputDirection[1]; // * delta;
+  // Adds input direction to snake body (x, y)
+  snakeBody[0].x += inputDirection.x; // * delta;
+  snakeBody[0].y += inputDirection.y; // * delta;
 
   // Handle border collisions
   // Allows the snake to move into walls
-  if(!isBorderCollisionOn()) {
+  if(!BORDER_COLLISION) {
     const GRID_SIZE = getGridSize();
-    if(snakeBody[0][0] < 1) {
-      snakeBody[0][0] = GRID_SIZE;
+    if(snakeBody[0].x < 1) {
+      snakeBody[0].x = GRID_SIZE;
     }
-    if(snakeBody[0][0] > GRID_SIZE) {
-        snakeBody[0][0] = 1;
+    if(snakeBody[0].x > GRID_SIZE) {
+        snakeBody[0].x = 1;
     }
-    if(snakeBody[0][1] < 1) {
-        snakeBody[0][1] = GRID_SIZE;
+    if(snakeBody[0].y < 1) {
+        snakeBody[0].y = GRID_SIZE;
     }
-    if(snakeBody[0][1] > GRID_SIZE) {
-        snakeBody[0][1] = 1;
+    if(snakeBody[0].y > GRID_SIZE) {
+        snakeBody[0].y = 1;
     }
   }
 }
@@ -71,8 +72,8 @@ export function draw(gameBoard) {
   snakeBody.forEach((snake, index) => {
     const snakeContainer = document.createElement('div');
     const snakeElement = document.createElement('div');
-    snakeContainer.style.gridRowStart = snake[1];
-    snakeContainer.style.gridColumnStart = snake[0];
+    snakeContainer.style.gridRowStart = snake.y;
+    snakeContainer.style.gridColumnStart = snake.x;
 
     if (index === 0) {
       snakeElement.classList.add('snake-head');
@@ -107,7 +108,7 @@ export function snakeIntersection() {
 }
 
 function equalPositions(pos1, pos2) {
-  return (pos1[0] === pos2[0]) && (pos1[1] === pos2[1]);
+  return (pos1.x === pos2.x) && (pos1.y === pos2.y);
 }
 
 function addSegments() {
