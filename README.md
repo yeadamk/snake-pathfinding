@@ -1,6 +1,7 @@
 # Snake
 
 A snake game built in Vanilla JavaScript using different pathfinding algorithms:  
+
 - Hamiltonian cycle
 - Breath First Search
 - A*
@@ -12,13 +13,14 @@ A snake game built in Vanilla JavaScript using different pathfinding algorithms:
 
 | **Controls** | **Description** |
 | ----------- | ----------- |
-| W/A/S/D or Arrow Keys| Move the snake |
+| W/A/S/D or Arrow Keys| Snake movement |
 | Spacebar | Toggle automation |
+| B | Toggle border collision |
 | P or Esc | Pause game |
 
 ## License
 
-© 2021-2022 Yeadam Kim
+© 2021-2023 Yeadam Kim
 
 Licensed under the [MIT License](LICENSE).
 
