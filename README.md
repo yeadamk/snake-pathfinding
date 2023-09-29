@@ -22,7 +22,7 @@ A classic snake game built in Vanilla JavaScript using different pathfinding alg
 
 ## License
 
-© 2021-2023 Yeadam Kim
+© 2022-2023 Yeadam Kim
 
 Licensed under the [MIT License](LICENSE).
 
