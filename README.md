@@ -3,8 +3,8 @@
 A classic snake game built in Vanilla JavaScript using different pathfinding algorithms:
 
 - Hamiltonian cycle
-- Breath First Search
-- A*
+- ~~Breath First Search~~
+- ~~A*~~
 
 *The pathfinding algorithms can be changed in agent.js (hamiltonian by default)*  
 
